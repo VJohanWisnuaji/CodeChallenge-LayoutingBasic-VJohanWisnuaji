@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import com.studytrial.codechallenge_layoutingbasic.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         fun refreshKomp() {
             iv_rock_komputer.setBackgroundResource(0)
@@ -35,10 +33,71 @@ class MainActivity : AppCompatActivity() {
             iv_scissor_pemain.setBackgroundResource(0)
         }
 
+        fun komputer(komp: Int): String {
+            when (komp) {
+                1 -> {
+                    binding.ivRockKomputer.setBackgroundResource(R.drawable.bg_transparan)
+                    Log.d("Binar", "Komputer memilih Batu")
+                    inputKomputer = "rock"
+                }
+                2 -> {
+                    binding.ivPaperKomputer.setBackgroundResource(R.drawable.bg_transparan)
+                    Log.d("Binar", "Komputer memilih Kertas")
+                    inputKomputer = "paper"
+                }
+                3 -> {
+                    binding.ivScissorKomputer.setBackgroundResource(R.drawable.bg_transparan)
+                    Log.d("Binar", "Komputer memilih Gunting")
+                    inputKomputer = "scissor"
+                }
+            }
+            return inputKomputer
+        }
+
+        fun result(inputPemain: String, inputKomputer: String) {
+            if (inputPemain == "rock" && inputKomputer == "rock") {
+                binding.ivCenter.setImageResource(R.drawable.draw)
+                Log.d("Binar", "Pemain Batu dan Komputer Batu hasil Seri")
+
+            } else if (inputPemain == "rock" && inputKomputer == "paper") {
+                binding.ivCenter.setImageResource(R.drawable.komputer_menang)
+                Log.d("Binar", "Pemain Batu dan Komputer Kertas hasil Komputer Menang")
+
+            } else if (inputPemain == "rock" && inputKomputer == "scissor") {
+                binding.ivCenter.setImageResource(R.drawable.pemain_menang)
+                Log.d("Binar", "Pemain Batu dan Komputer Gunting hasil Pemain Menang")
+
+            } else if (inputPemain == "paper" && inputKomputer == "rock") {
+                binding.ivCenter.setImageResource(R.drawable.pemain_menang)
+                Log.d("Binar", "Pemain Kertas dan Komputer Batu hasil Pemain Menang")
+
+            } else if (inputPemain == "paper" && inputKomputer == "paper") {
+                binding.ivCenter.setImageResource(R.drawable.draw)
+                Log.d("Binar", "Pemain Kertas dan Komputer Kertas hasil Seri")
+
+            } else if (inputPemain == "paper" && inputKomputer == "scissor") {
+                binding.ivCenter.setImageResource(R.drawable.komputer_menang)
+                Log.d("Binar", "Pemain Kertas dan Komputer Gunting hasil Komputer Menang")
+
+            } else if (inputPemain == "scissor" && inputKomputer == "rock") {
+                binding.ivCenter.setImageResource(R.drawable.komputer_menang)
+                Log.d("Binar", "Pemain Gunting dan Komputer Batu hasil Komputer Menang")
+
+            } else if (inputPemain == "scissor" && inputKomputer == "paper") {
+                binding.ivCenter.setImageResource(R.drawable.pemain_menang)
+                Log.d("Binar", "Pemain Gunting dan Komputer Kertas hasil Pemain Menang")
+
+            } else if (inputPemain == "scissor" && inputKomputer == "scissor") {
+                binding.ivCenter.setImageResource(R.drawable.draw)
+                Log.d("Binar", "Pemain Gunting dan Komputer Gunting hasil Seri")
+            }
+        }
+
         binding.ivRockPemain.setOnClickListener {
             binding.ivRockPemain.setBackgroundResource(R.drawable.bg_transparan)
             refreshKomp()
             inputPemain = "rock"
+            Log.d("Binar", "Pemain memilih Batu")
             val komp = (1..3).random()
             komputer(komp)
             result(inputPemain, inputKomputer)
@@ -51,6 +110,7 @@ class MainActivity : AppCompatActivity() {
             binding.ivPaperPemain.setBackgroundResource(R.drawable.bg_transparan)
             refreshKomp()
             inputPemain = "paper"
+            Log.d("Binar", "Pemain memilih Kertas")
             val komp = (1..3).random()
             komputer(komp)
             result(inputPemain, inputKomputer)
@@ -63,6 +123,7 @@ class MainActivity : AppCompatActivity() {
             binding.ivScissorPemain.setBackgroundResource(R.drawable.bg_transparan)
             refreshKomp()
             inputPemain = "scissor"
+            Log.d("Binar", "Pemain memilih Gunting")
             val komp = (1..3).random()
             komputer(komp)
             result(inputPemain, inputKomputer)
@@ -79,62 +140,6 @@ class MainActivity : AppCompatActivity() {
             refreshKomp()
             refreshPemain()
         }
-    }
-
-    fun komputer(komp: Int): String {
-        when (komp) {
-            1 -> {
-                iv_rock_komputer.setBackgroundResource(R.drawable.bg_transparan)
-                inputKomputer = "rock"
-            }
-            2 -> {
-                iv_paper_komputer.setBackgroundResource(R.drawable.bg_transparan)
-                inputKomputer = "paper"
-            }
-            3 -> {
-                iv_scissor_komputer.setBackgroundResource(R.drawable.bg_transparan)
-                inputKomputer = "scissor"
-            }
-        }
-        return inputKomputer
-    }
-
-    fun result(pemain: String, komputer: String) {
-        if (inputPemain == "rock" && inputKomputer == "rock") {
-            iv_center.setImageResource(R.drawable.draw)
-            Log.d("Binar", "Pemain Batu dan Komputer Batu hasil Seri")
-
-        } else if (inputPemain == "rock" && inputKomputer == "paper") {
-            iv_center.setImageResource(R.drawable.komputer_menang)
-            Log.d("Binar", "Pemain Batu dan Komputer Kertas hasil Komputer Menang")
-
-        } else if (inputPemain == "rock" && inputKomputer == "scissor") {
-            iv_center.setImageResource(R.drawable.pemain_menang)
-            Log.d("Binar", "Pemain Batu dan Komputer Gunting hasil Pemain Menang")
-
-        } else if (inputPemain == "paper" && inputKomputer == "rock") {
-            iv_center.setImageResource(R.drawable.pemain_menang)
-            Log.d("Binar", "Pemain Kertas dan Komputer Batu hasil Pemain Menang")
-
-        } else if (inputPemain == "paper" && inputKomputer == "paper") {
-            iv_center.setImageResource(R.drawable.draw)
-            Log.d("Binar", "Pemain Kertas dan Komputer Kertas hasil Seri")
-
-        } else if (inputPemain == "paper" && inputKomputer == "scissor") {
-            iv_center.setImageResource(R.drawable.komputer_menang)
-            Log.d("Binar", "Pemain Kertas dan Komputer Gunting hasil Komputer Menang")
-
-        } else if (inputPemain == "scissor" && inputKomputer == "rock") {
-            iv_center.setImageResource(R.drawable.komputer_menang)
-            Log.d("Binar", "Pemain Gunting dan Komputer Batu hasil Komputer Menang")
-
-        } else if (inputPemain == "scissor" && inputKomputer == "paper") {
-            iv_center.setImageResource(R.drawable.pemain_menang)
-            Log.d("Binar", "Pemain Gunting dan Komputer Kertas hasil Pemain Menang")
-
-        } else if (inputPemain == "scissor" && inputKomputer == "scissor") {
-            iv_center.setImageResource(R.drawable.draw)
-            Log.d("Binar", "Pemain Gunting dan Komputer Gunting hasil Seri")
-        }
+        setContentView(binding.root)
     }
 }
