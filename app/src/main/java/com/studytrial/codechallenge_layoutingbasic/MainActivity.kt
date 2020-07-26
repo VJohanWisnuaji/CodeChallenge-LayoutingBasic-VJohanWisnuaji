@@ -20,17 +20,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        fun refreshKomp() {
-            iv_rock_komputer.setBackgroundResource(0)
-            iv_paper_komputer.setBackgroundResource(0)
-            iv_scissor_komputer.setBackgroundResource(0)
+        fun lockPemain() {
+            binding.ivRockPemain.isClickable = false
+            binding.ivPaperPemain.isClickable = false
+            binding.ivScissorPemain.isClickable = false
         }
 
-        fun refreshPemain() {
-            iv_rock_pemain.setBackgroundResource(0)
-            iv_paper_pemain.setBackgroundResource(0)
-            iv_scissor_pemain.setBackgroundResource(0)
+        fun refresh() {
+            binding.ivRockPemain.setBackgroundResource(0)
+            binding.ivPaperPemain.setBackgroundResource(0)
+            binding.ivScissorPemain.setBackgroundResource(0)
+            binding.ivRockKomputer.setBackgroundResource(0)
+            binding.ivPaperKomputer.setBackgroundResource(0)
+            binding.ivScissorKomputer.setBackgroundResource(0)
         }
 
         fun komputer(komp: Int): String {
@@ -95,51 +99,40 @@ class MainActivity : AppCompatActivity() {
 
         binding.ivRockPemain.setOnClickListener {
             binding.ivRockPemain.setBackgroundResource(R.drawable.bg_transparan)
-            refreshKomp()
             inputPemain = "rock"
             Log.d("Binar", "Pemain memilih Batu")
             val komp = (1..3).random()
             komputer(komp)
             result(inputPemain, inputKomputer)
-            binding.ivRockPemain.setClickable(false)
-            binding.ivPaperPemain.setClickable(false)
-            binding.ivScissorPemain.setClickable(false)
+            lockPemain()
         }
 
         binding.ivPaperPemain.setOnClickListener {
             binding.ivPaperPemain.setBackgroundResource(R.drawable.bg_transparan)
-            refreshKomp()
             inputPemain = "paper"
             Log.d("Binar", "Pemain memilih Kertas")
             val komp = (1..3).random()
             komputer(komp)
             result(inputPemain, inputKomputer)
-            binding.ivRockPemain.setClickable(false)
-            binding.ivPaperPemain.setClickable(false)
-            binding.ivScissorPemain.setClickable(false)
+            lockPemain()
         }
 
         binding.ivScissorPemain.setOnClickListener {
             binding.ivScissorPemain.setBackgroundResource(R.drawable.bg_transparan)
-            refreshKomp()
             inputPemain = "scissor"
             Log.d("Binar", "Pemain memilih Gunting")
             val komp = (1..3).random()
             komputer(komp)
             result(inputPemain, inputKomputer)
-            binding.ivRockPemain.setClickable(false)
-            binding.ivPaperPemain.setClickable(false)
-            binding.ivScissorPemain.setClickable(false)
+            lockPemain()
         }
 
         binding.ivRefresh.setOnClickListener {
-            binding.ivRockPemain.setClickable(true)
-            binding.ivPaperPemain.setClickable(true)
-            binding.ivScissorPemain.setClickable(true)
+            binding.ivRockPemain.isClickable = true
+            binding.ivPaperPemain.isClickable = true
+            binding.ivScissorPemain.isClickable = true
             binding.ivCenter.setImageResource(R.drawable.vs)
-            refreshKomp()
-            refreshPemain()
+            refresh()
         }
-        setContentView(binding.root)
     }
 }

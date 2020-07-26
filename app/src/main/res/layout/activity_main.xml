@@ -107,8 +107,8 @@
         android:layout_height="72dp"
         android:layout_marginTop="32dp"
         android:scaleX="-1"
+        android:scaleY="-1"
         android:src="@drawable/rock"
-        android:tag="1"
         app:layout_constraintEnd_toEndOf="@id/guideline_komputer"
         app:layout_constraintStart_toStartOf="@id/guideline_komputer"
         app:layout_constraintTop_toBottomOf="@id/tv_pemain" />
@@ -119,6 +119,7 @@
         android:layout_height="72dp"
         android:layout_marginTop="32dp"
         android:scaleX="-1"
+        android:scaleY="-1"
         android:src="@drawable/paper"
         app:layout_constraintEnd_toEndOf="@id/guideline_komputer"
         app:layout_constraintStart_toStartOf="@id/guideline_komputer"
@@ -130,8 +131,8 @@
         android:layout_height="72dp"
         android:layout_marginTop="32dp"
         android:scaleX="-1"
+        android:scaleY="-1"
         android:src="@drawable/scissor"
-        android:tag="2"
         app:layout_constraintEnd_toEndOf="@id/guideline_komputer"
         app:layout_constraintStart_toStartOf="@id/guideline_komputer"
         app:layout_constraintTop_toBottomOf="@id/iv_paper_komputer" />
@@ -142,7 +143,6 @@
         android:layout_height="72dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/ic_refresh"
-        android:tag="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideline_komputer"
         app:layout_constraintStart_toStartOf="@id/guideline_komputer" />
